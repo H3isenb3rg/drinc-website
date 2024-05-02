@@ -1,0 +1,9 @@
+<h1>{{ drink.name }}</h1>
+
+<ul>
+{% for rating in drink.rating_set.all %}
+    <li>[{{ rating.date }}] {{ rating.rating }} -- {{ rating.notes }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'ratings:detail' drink.id %}">Vote again?</a>

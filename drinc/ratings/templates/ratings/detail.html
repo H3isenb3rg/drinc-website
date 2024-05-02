@@ -1,0 +1,19 @@
+<h1>{{ drink.name }}</h1>
+<ul>
+{% for ing in drink.ingredients.all %}
+    <li>[{{ ing.category }}] {{ ing.name }}</li>
+{% endfor %}
+</ul>
+
+<form action="{% url 'ratings:vote' drink.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>{{ drink.name }}</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <input type="number" name="rating" id="rating" min="0" max="10">
+        <label for="rating">Rate this drink</label>
+        <input type="text" name="notes" id="notes">
+        <label for="notes">Additional Notes</label>
+    </fieldset>
+    <input type="submit" value="Vote">
+</form>
