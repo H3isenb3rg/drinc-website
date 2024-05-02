@@ -1,0 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'ratings/style.css' %}">
+
+{% if latest_drink_list %}
+    <ul>
+    {% for drink in latest_drink_list %}
+        <li><a href="{% url 'ratings:detail' drink.id %}">{{ drink.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No drinks are available.</p>
+{% endif %}
