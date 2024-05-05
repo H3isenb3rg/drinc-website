@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from datetime import date
 
 
@@ -68,3 +69,9 @@ class Rating(models.Model):
 
 
 # TODO: Voto Compatibilità
+
+
+# Proxy Class to customize the Django User Model
+# https://docs.djangoproject.com/en/dev/topics/auth/customizing/#extending-the-existing-user-model
+class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
